@@ -1,29 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+<html>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <script src="aframe-extras@7.2.0/dist/aframe-extras.min.js>https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+    <!-- we import arjs version without NFT but with marker + location based support -->
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-  </head>
-  <body>
-    <a-scene>
-      <a-assets>
-        <a-asset-item id="me" src="./assets/Avatar_YnesCHAARI.gltf"></a-asset-item>
-        <video id="me_video" autoplay loop="true" src="./assets/Logo.mp4" ></video>
-      </a-assets>
+    <body style="margin : 0px; overflow: hidden;">
+        <a-scene embedded arjs>
+        <a-marker preset="hiro">
+            <!-- we use cors proxy to avoid cross-origin problems ATTENTION! you need to set up your server -->
+            <a-entity
+            rotation="0 45 0"
+            position="0 0 -2"
+            scale="0.2 0.2 0.2"
+            gltf-model="./assets/Avatar_YnesCHAARI.gltf"
+            animation-mixer repeat Infinity
 
-      <a-entity
-        rotation="0 0 0"
-        gltf-model="#me"
-        animation-mixer repeat="indefinite"
-        position="2 -1 0"
-      ></a-entity>
+            ></a-entity>
+            <a-video src="./assets/Logo.mp4" width="3" height="2" position="2 2 -8"></a-video>
 
-      <!-- Utilisation de la balise a-video pour afficher la vidéo sur l'écran 3D -->
-      <a-video src="#me_video" width="3" height="2" position="2 2 -8"></a-video>
-    </a-scene>
-  </body>
+        </a-marker>
+        <a-entity camera></a-entity>
+
+        </a-scene>
+    </body>
 </html>
